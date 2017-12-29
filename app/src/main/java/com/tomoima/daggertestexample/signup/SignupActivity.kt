@@ -53,6 +53,7 @@ class SignupActivity : AppCompatActivity() {
                         .observeOn(Schedulers.io())
                         .flatMapCompletable { _ ->
                             signupViewModel.update(name.text.toString(), age.text.toString())
+                                    .onErrorComplete()
                         }
                         .subscribe({ }, { println(it) }),
                 signupViewModel.observeUserInfo()

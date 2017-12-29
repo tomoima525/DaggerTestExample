@@ -17,6 +17,7 @@ class SignupViewModel(private val userRepository: UserRepository) {
     fun update(name: String, age: String): Completable =
             userRepository.set(User(name, age.toInt()))
                     .doOnError{ errorMessage.onNext(it.message) }
+                    .doOnComplete{ errorMessage.onNext("") }
 
     /**
      * Observable
