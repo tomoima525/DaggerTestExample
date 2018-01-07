@@ -19,7 +19,6 @@ class UserRepository(
     }
 
     private fun initialization() {
-        System.out.println("======= " + userPref.hasAge())
         if (userPref.hasAge() && userPref.hasName()) {
             processor.onNext(User(userPref.name, userPref.age))
         }

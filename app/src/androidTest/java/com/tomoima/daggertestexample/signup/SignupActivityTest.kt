@@ -17,9 +17,6 @@ import com.tomoima.daggertestexample.data.TestPrefModule
 import com.tomoima.daggertestexample.data.UserPrefs
 import com.tomoima.daggertestexample.model.User
 import io.reactivex.Maybe
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.schedulers.Schedulers
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -54,13 +51,7 @@ class SignupActivityTest {
                 .build()
         app.appComponent = testAppComponent
         testAppComponent.inject(this)
-        RxAndroidPlugins.initMainThreadScheduler { Schedulers.trampoline() }
-
-    }
-
-    @After
-    fun tearDown() {
-        RxAndroidPlugins.reset()
+        System.out.println("==== TestAppComponent injected")
     }
 
     @Test
@@ -80,7 +71,7 @@ class SignupActivityTest {
     @Test
     fun userInfo_returns_stored_userInfo() {
         // given
-        // nothing is stored
+        // "Mike" and 20 is stored
         whenever(userPref.hasAge()).thenReturn(true)
         whenever(userPref.hasName()).thenReturn(true)
         whenever(userPref.name).thenReturn("Mike")

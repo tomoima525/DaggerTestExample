@@ -43,7 +43,7 @@ class SignupActivity : AppCompatActivity() {
         (application as MyApplication).appComponent
                 .plus(SignupComponent.Module())
                 .inject(this)
-
+        System.out.println("==== SignupActivity injected")
         ButterKnife.bind(this)
 
         val registerInput = RxView.clicks(registerBtn).toFlowable(BackpressureStrategy.LATEST)
